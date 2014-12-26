@@ -14,7 +14,13 @@ data/cache/
 data/sessions/
 data/tmp/
 temp/
+/tests/TestConfiguration.php
+!*.gitadd
+!*.gitkeep
+.DS_Store
+Thumbs.db
 
-# Legacy ZF1
-demos/
-extras/documentation
+# Zend Studio files
+/.settings
+/.buildpath
+/.project

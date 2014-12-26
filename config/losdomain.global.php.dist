@@ -1,0 +1,9 @@
+<?php
+$conf = [
+    /**
+     * Default domain directory
+     */
+    //'domain_dir' => 'config/autoload/domains',
+];
+
+return ['losdomain' => $conf];
