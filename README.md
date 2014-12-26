@@ -67,14 +67,14 @@ For example, assume these domains:
 - test.local
 - client1.test.local
 - client2.test.local
-- www.test.local
+- ww<span>w.test</span>.local
 
 Each domain (or subdomain) can have a different configuration (layout, database, so on):
 - config/autoload/domains/test.local/domain.global.php
 - config/autoload/domains/client1.test.local/domain.global.php
-- config/autoload/domains/www.test.local/domain.global.php
+- config/autoload/domains/ww<span>w.test</span>.local/domain.global.php
 
-Since the client2.test.local does not have it's configuration, it will use the default from the projet.
+Since the client2.test.local does not have it's configuration, it will use the default from the project.
 
 It's not mandatory, but you can add the domains path to your application.config.php. If not specified, the module will import them during
 it's initialization.
@@ -89,8 +89,7 @@ return array(
     'module_listener_options' => array(
         'module_paths' => array(
             './module',
-            './vendor',
-            './module'
+            './vendor'
         ),
         
         'config_glob_paths' => array(
@@ -134,16 +133,17 @@ return [
 ### Domain Alias
 It's possible to assign an alias to a domain. Supose you have two domains that share the same configurations and layout:
 - test.local
-- www.test.local
+- ww<span>w.test</span>.local
 
-The first you create as usual. The second domain needs to be configured as:
+The first one you create as usual. The second domain needs to be configured as (config/autload/domains/ww<span>w.test</span>.local/domain.global.php):
 ```php
 return [
-    'www.test.local' => [
+    'ww<span>w.test</span>.local' => [
         'alias' => 'test.local
     ]
 ];
 ```
 
 With this configuration, when the project is access through 'www.test.local', the module will load the 'test.local' files.
+
 **Warning!** If you define anything alse, it could be overwritten by it's alias.

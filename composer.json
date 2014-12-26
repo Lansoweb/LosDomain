@@ -1,0 +1,24 @@
+{
+  "name" : "los/losdomain",
+  "description" : "ZF2 module for use configuration, layout, database, etc per domain or subdomain",
+  "require" : {
+    "php" : ">=5.4.0",
+    "zendframework/zendframework" : "2.3.*"
+  },
+  "authors" : [ {
+    "name" : "Leandro Silva",
+    "email" : "leandro@leandrosilva.info",
+    "homepage" : "https://leandrosilva.info"
+  } ],
+  "keywords" : [ "los", "domain", "module", "zf2" ],
+  "minimum-stability" : "beta",
+  "autoload" : {
+    "psr-0" : {
+      "LosDomain\\" : "src/"
+    },
+    "classmap" : [ "./" ]
+  },
+  "type" : "library",
+  "license" : "BSD-3",
+  "homepage" : "http://github.com/Lansoweb/LosDomain"
+}
