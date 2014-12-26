@@ -67,12 +67,12 @@ For example, assume these domains:
 - test.local
 - client1.test.local
 - client2.test.local
-- ww<span>w.test</span>.local
+- www.test.local
 
 Each domain (or subdomain) can have a different configuration (layout, database, so on):
 - config/autoload/domains/test.local/domain.global.php
 - config/autoload/domains/client1.test.local/domain.global.php
-- config/autoload/domains/ww<span>w.test</span>.local/domain.global.php
+- config/autoload/domains/www.test.local/domain.global.php
 
 Since the client2.test.local does not have it's configuration, it will use the default from the project.
 
@@ -133,12 +133,12 @@ return [
 ### Domain Alias
 It's possible to assign an alias to a domain. Supose you have two domains that share the same configurations and layout:
 - test.local
-- ww<span>w.test</span>.local
+- www.test.local
 
-The first one you create as usual. The second domain needs to be configured as (config/autload/domains/ww<span>w.test</span>.local/domain.global.php):
+The first one you create as usual. The second domain needs to be configured as (config/autload/domains/www.test.local/domain.global.php):
 ```php
 return [
-    'ww<span>w.test</span>.local' => [
+    'www.test.local' => [
         'alias' => 'test.local
     ]
 ];

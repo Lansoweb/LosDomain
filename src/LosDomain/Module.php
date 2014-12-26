@@ -10,8 +10,6 @@
 namespace LosDomain;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\ModuleEvent;
 use Zend\ModuleManager\ModuleManager;
 use LosDomain\Options\ModuleOptions;
@@ -31,20 +29,20 @@ class Module implements AutoloaderProviderInterface
 {
     /**
      * Module ini function that import the current domain files or it's alias
-     * 
+     *
      * @param ModuleManager $moduleManager
      */
     public function init(ModuleManager $moduleManager)
     {
         $events = $moduleManager->getEventManager();
-    
-        $events->attach(ModuleEvent::EVENT_MERGE_CONFIG, function($e){
+
+        $events->attach(ModuleEvent::EVENT_MERGE_CONFIG, function ($e) {
             $configListener = $e->getConfigListener();
             $config = $configListener->getMergedConfig(false);
             $domain = DomainService::getDomain();
-            
+
             $domainDir = null;
-            
+
             if (!isset($config[$domain])) {
                 if (isset($config['losdomain']['domain_dir'])) {
                     $domainDir = $config['losdomain']['domain_dir'];
@@ -53,11 +51,10 @@ class Module implements AutoloaderProviderInterface
                     $configListener->setMergedConfig($config);
                 }
             }
-            
+
             if ($domainDir != null && isset($config[$domain]) && array_key_exists('alias', $config[$domain])) {
-                
                 $alias = $config[$domain]['alias'];
-                
+
                 $aliasConfig = DomainOptions::importDomain($domainDir, $alias);
                 $config[$domain] = $aliasConfig[$alias];
                 $config = ArrayUtils::merge($config, $aliasConfig);
@@ -66,55 +63,56 @@ class Module implements AutoloaderProviderInterface
             }
         });
     }
-    
+
     public function onBootstrap($e)
     {
-        $e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
+        $e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function ($e) {
             if (!isset($_SERVER['HTTP_HOST'])) {
                 return;
             }
             $controller = $e->getTarget();
             $domainService = $e->getApplication()->getServiceManager()->get('losdomain.service');
-            
+
             $layout = $domainService->getLayout();
             if ($layout) {
                 $controller->layout($layout);
             }
         }, 100);
     }
-    
+
     public function getServiceConfig()
     {
         return [
             'factories' => [
                 'losdomain_options' => function ($sl) {
                     $config = $sl->get('Configuration');
-    
+
                     return new ModuleOptions(isset($config['losdomain']) ? $config['losdomain'] : []);
                 },
-                'LosDomain\Service\Domain' => function($sl) {
+                'LosDomain\Service\Domain' => function ($sl) {
                     $domain = new DomainService();
                     $domain->setServiceLocator($sl);
-                    
+
                     return $domain;
                 },
-                'LosDomain\Options\DomainOptions' => function($sl) {
+                'LosDomain\Options\DomainOptions' => function ($sl) {
                     $service = $sl->get('losdomain.service');
+
                     return $service->getDomainOptions();
-                }
+                },
             ],
             'aliases' => [
                 'losdomain.service' => 'LosDomain\Service\Domain',
-                'losdomain.domain.options' => 'LosDomain\Options\DomainOptions'
+                'losdomain.domain.options' => 'LosDomain\Options\DomainOptions',
             ]
         ];
     }
-    
+
     public function getAutoloaderConfig()
     {
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/../../autoload_classmap.php',
+                __DIR__.'/../../autoload_classmap.php',
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
@@ -126,7 +124,6 @@ class Module implements AutoloaderProviderInterface
 
     public function getConfig()
     {
-        return include __DIR__ . '/../../config/module.config.php';
+        return include __DIR__.'/../../config/module.config.php';
     }
-
 }

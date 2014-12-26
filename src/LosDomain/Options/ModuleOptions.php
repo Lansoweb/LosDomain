@@ -21,7 +21,6 @@ use Zend\Stdlib\AbstractOptions;
  */
 class ModuleOptions extends AbstractOptions
 {
-
     /**
      * Default domain directory
      *
@@ -31,23 +30,23 @@ class ModuleOptions extends AbstractOptions
 
     /**
      * Returns the path to the domains configuration files. Checks if the path exists.
-     * 
+     *
      * @throws \InvalidArgumentException If the specified path does not exists
-     * @return string 
+     * @return string
      */
     public function getDomainDir()
     {
         if (! file_exists($this->domainDir)) {
             throw new \InvalidArgumentException("Directory does not exist!");
         }
-        
+
         return $this->domainDir;
     }
 
     /**
      * Sets the path to the domains configuration files. Checks if the path exists.
-     *  
-     * @param string $domainDir            
+     *
+     * @param string $domainDir
      */
     public function setDomainDir($domainDir)
     {
@@ -55,7 +54,7 @@ class ModuleOptions extends AbstractOptions
         if (! file_exists($domainDir)) {
             throw new \InvalidArgumentException("Directory does not exist!");
         }
-        
+
         $this->domainDir = $domainDir;
     }
 }

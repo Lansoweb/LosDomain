@@ -35,15 +35,15 @@ class DomainOptions extends AbstractOptions
     protected $layout;
 
     /**
-     * If this domain is as alias to other. The module will import the configuration files from the alias 
+     * If this domain is as alias to other. The module will import the configuration files from the alias
      * @var string
      */
     protected $alias;
 
     /**
      * Constructor
-     * @param array $options Array with the options
-     * @param string $domain The domain
+     * @param array  $options Array with the options
+     * @param string $domain  The domain
      */
     public function __construct($options, $domain)
     {
@@ -55,10 +55,11 @@ class DomainOptions extends AbstractOptions
     {
         return $this->domain;
     }
-    
+
     public function setDomain($domain)
     {
         $this->domain = $domain;
+
         return $this;
     }
 
@@ -70,6 +71,7 @@ class DomainOptions extends AbstractOptions
     public function setLayout($layout)
     {
         $this->layout = $layout;
+
         return $this;
     }
 
@@ -77,34 +79,34 @@ class DomainOptions extends AbstractOptions
     {
         return $this->alias;
     }
-    
+
     public function setAlias($alias)
     {
         $this->alias = $alias;
+
         return $this;
     }
 
     /**
      * Import the files form a domain (both global and local)
-     * 
-     * @param string $path The path to the domains
-     * @param string $domain The domain
-     * @return array The merged array with the options
+     *
+     * @param  string $path   The path to the domains
+     * @param  string $domain The domain
+     * @return array  The merged array with the options
      */
     public static function importDomain($path, $domain)
     {
-        $global = $path . DIRECTORY_SEPARATOR . $domain . DIRECTORY_SEPARATOR . 'domain.global.php';
+        $global = $path.DIRECTORY_SEPARATOR.$domain.DIRECTORY_SEPARATOR.'domain.global.php';
         $config = [];
         if (file_exists($global)) {
             $config = include $global;
         }
-    
-        $local = $path . DIRECTORY_SEPARATOR . $domain . DIRECTORY_SEPARATOR . 'domain.local.php';
+
+        $local = $path.DIRECTORY_SEPARATOR.$domain.DIRECTORY_SEPARATOR.'domain.local.php';
         if (file_exists($local)) {
             $config = ArrayUtils::merge($config, include $local);
         }
-        
+
         return $config;
     }
-    
 }

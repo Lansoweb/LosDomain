@@ -5,7 +5,7 @@ return [
     ],
     'view_manager' => [
         'template_map' => [
-            'layout/teste.local' => __DIR__ . '/view/layout/layout_dev.phtml',
-        ]
+            'layout/teste.local' => __DIR__.'/view/layout/layout_dev.phtml',
+        ],
     ]
 ];
