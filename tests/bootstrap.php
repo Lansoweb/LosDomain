@@ -17,10 +17,10 @@ if (is_readable($testsPath.'/TestConfiguration.php')) {
     require_once $testsPath.'/TestConfiguration.php.dist';
 }
 
-$path = array(
+$path = [
     ZF2_PATH,
     get_include_path(),
-);
+];
 set_include_path(implode(PATH_SEPARATOR, $path));
 
 require_once 'Zend/Loader/AutoloaderFactory.php';
@@ -30,13 +30,13 @@ use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 
 // setup autoloader
-AutoloaderFactory::factory(array(
-    'Zend\Loader\StandardAutoloader' => array(
+AutoloaderFactory::factory([
+    'Zend\Loader\StandardAutoloader' => [
         StandardAutoloader::AUTOREGISTER_ZF => true,
         StandardAutoloader::ACT_AS_FALLBACK => false,
         StandardAutoloader::LOAD_NS => $additionalNamespaces,
-    ),
-));
+    ],
+]);
 
 // The module name is obtained using directory name or constant
 $moduleName = pathinfo($rootPath, PATHINFO_BASENAME);
@@ -48,24 +48,24 @@ if (defined('MODULE_NAME')) {
 $moduleTestCaseClassname = '\\'.$moduleName.'Test\\Framework\\TestCase';
 
 // This module's path plus additionally defined paths are used $modulePaths
-$modulePaths = array(
+$modulePaths = [
     dirname($rootPath),
-);
+];
 if (isset($additionalModulePaths)) {
     $modulePaths = array_merge($modulePaths, $additionalModulePaths);
 }
 
 // Load this module and defined dependencies
-$modules = array(
+$modules = [
     $moduleName,
-);
+];
 if (isset($moduleDependencies)) {
     $modules = array_merge($modules, $moduleDependencies);
 }
 
-$listenerOptions = new Zend\ModuleManager\Listener\ListenerOptions(array(
+$listenerOptions = new Zend\ModuleManager\Listener\ListenerOptions([
     'module_paths' => $modulePaths,
-));
+]);
 $defaultListeners = new Zend\ModuleManager\Listener\DefaultListenerAggregate($listenerOptions);
 $sharedEvents = new Zend\EventManager\SharedEventManager();
 $moduleManager = new \Zend\ModuleManager\ModuleManager($modules);
@@ -84,23 +84,23 @@ if (method_exists($moduleTestCaseClassname, 'setLocator')) {
         $diConfig->configure($di);
     }
 
-    $routerDiConfig = new \Zend\Di\Config(array(
-        'definition' => array(
-            'class' => array(
-                'Zend\Mvc\Router\RouteStackInterface' => array(
-                    'instantiator' => array(
+    $routerDiConfig = new \Zend\Di\Config([
+        'definition' => [
+            'class' => [
+                'Zend\Mvc\Router\RouteStackInterface' => [
+                    'instantiator' => [
                         'Zend\Mvc\Router\Http\TreeRouteStack',
                         'factory',
-                    ),
-                ),
-            ),
-        ),
-    ));
+                    ],
+                ],
+            ],
+        ],
+    ]);
     $routerDiConfig->configure($di);
 
-    call_user_func_array($moduleTestCaseClassname.'::setLocator', array(
+    call_user_func_array($moduleTestCaseClassname.'::setLocator', [
         $di,
-    ));
+    ]);
 }
 
 // When this is in global scope, PHPUnit catches exception:
