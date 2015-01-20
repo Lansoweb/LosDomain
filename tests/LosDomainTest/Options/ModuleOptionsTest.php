@@ -1,5 +1,5 @@
 <?php
-namespace LosDomainTest;
+namespace LosDomainTest\Options;
 
 use LosDomain\Options\ModuleOptions;
 
