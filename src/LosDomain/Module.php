@@ -17,6 +17,7 @@ use LosDomain\Service\Domain as DomainService;
 use LosDomain\Options\DomainOptions;
 use Zend\Stdlib\ArrayUtils;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\EventManager\EventInterface;
 
 /**
  * Module class
@@ -37,7 +38,7 @@ class Module implements AutoloaderProviderInterface
     {
         $events = $moduleManager->getEventManager();
 
-        $events->attach(ModuleEvent::EVENT_MERGE_CONFIG, function ($e) {
+        $events->attach(ModuleEvent::EVENT_MERGE_CONFIG, function (EventInterface $e) {
             $configListener = $e->getConfigListener();
             $config = $configListener->getMergedConfig(false);
             $domain = DomainService::getDomain();
@@ -67,7 +68,7 @@ class Module implements AutoloaderProviderInterface
 
     public function onBootstrap($e)
     {
-        $e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function ($e) {
+        $e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function (EventInterface $e) {
             if (!isset($_SERVER['HTTP_HOST'])) {
                 return;
             }
