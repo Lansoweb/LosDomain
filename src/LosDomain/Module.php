@@ -16,6 +16,7 @@ use LosDomain\Options\ModuleOptions;
 use LosDomain\Service\Domain as DomainService;
 use LosDomain\Options\DomainOptions;
 use Zend\Stdlib\ArrayUtils;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Module class
@@ -52,7 +53,7 @@ class Module implements AutoloaderProviderInterface
                 }
             }
 
-            if ($domainDir != null && isset($config[$domain]) && array_key_exists('alias', $config[$domain])) {
+            if ($domainDir !== null && isset($config[$domain]) && array_key_exists('alias', $config[$domain])) {
                 $alias = $config[$domain]['alias'];
 
                 $aliasConfig = DomainOptions::importDomain($domainDir, $alias);
@@ -84,18 +85,18 @@ class Module implements AutoloaderProviderInterface
     {
         return [
             'factories' => [
-                'losdomain_options' => function ($sl) {
+                'losdomain_options' => function (ServiceLocatorInterface $sl) {
                     $config = $sl->get('Configuration');
 
                     return new ModuleOptions(isset($config['losdomain']) ? $config['losdomain'] : []);
                 },
-                'LosDomain\Service\Domain' => function ($sl) {
+                'LosDomain\Service\Domain' => function (ServiceLocatorInterface $sl) {
                     $domain = new DomainService();
                     $domain->setServiceLocator($sl);
 
                     return $domain;
                 },
-                'LosDomain\Options\DomainOptions' => function ($sl) {
+                'LosDomain\Options\DomainOptions' => function (ServiceLocatorInterface $sl) {
                     $service = $sl->get('losdomain.service');
 
                     return $service->getDomainOptions();

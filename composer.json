@@ -26,6 +26,6 @@
         "classmap" : [ "./" ]
     },
     "type" : "library",
-    "license" : "BSD-3",
+    "license" : "BSD-3-Clause",
     "homepage" : "http://github.com/Lansoweb/LosDomain"
 }

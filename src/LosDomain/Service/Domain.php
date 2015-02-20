@@ -43,7 +43,7 @@ class Domain
      */
     public function __construct($domain = null)
     {
-        if ($domain == null) {
+        if ($domain === null) {
             $domain = self::getDomain();
         }
         $this->setDomain($domain);
@@ -67,7 +67,7 @@ class Domain
             return isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
         }
 
-        if ($this->domain == null) {
+        if ($this->domain === null) {
             $this->domain = self::getDomain();
         }
 
@@ -81,7 +81,7 @@ class Domain
      */
     public function getDomainOptions()
     {
-        if ($this->options == null) {
+        if ($this->options === null) {
             $config = $this->getServiceLocator()->get('Config');
             $this->options = new DomainOptions(isset($config[$this->domain]) ? $config[$this->domain] : [], $this->domain);
         }
