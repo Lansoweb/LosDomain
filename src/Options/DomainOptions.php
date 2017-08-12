@@ -4,12 +4,11 @@
  *
  * @author     Leandro Silva <leandro@leandrosilva.info>
  * @category   LosDomain
- * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE BSD-3 License
+ * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE MIT License
  * @link       http://github.com/LansoWeb/LosDomain
  */
 namespace LosDomain\Options;
 
-use Zend\Stdlib\AbstractOptions;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -17,10 +16,10 @@ use Zend\Stdlib\ArrayUtils;
  *
  * @author     Leandro Silva <leandro@leandrosilva.info>
  * @category   LosDomain
- * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE BSD-3 License
+ * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE MIT License
  * @link       http://github.com/LansoWeb/LosDomain
  */
-class DomainOptions extends AbstractOptions
+class DomainOptions
 {
     /**
      * The domain
@@ -41,14 +40,16 @@ class DomainOptions extends AbstractOptions
     protected $alias;
 
     /**
-     * Constructor
-     * @param array  $options Array with the options
-     * @param string $domain  The domain
+     * DomainOptions constructor.
+     * @param $domain
+     * @param $alias
+     * @param $layout
      */
-    public function __construct($options, $domain)
+    public function __construct($domain, $alias, $layout)
     {
-        parent::__construct($options);
         $this->domain = $domain;
+        $this->alias = $alias;
+        $this->layout = $layout;
     }
 
     public function getDomain()
@@ -56,35 +57,14 @@ class DomainOptions extends AbstractOptions
         return $this->domain;
     }
 
-    public function setDomain($domain)
-    {
-        $this->domain = $domain;
-
-        return $this;
-    }
-
     public function getLayout()
     {
         return $this->layout;
     }
 
-    public function setLayout($layout)
-    {
-        $this->layout = $layout;
-
-        return $this;
-    }
-
     public function getAlias()
     {
         return $this->alias;
-    }
-
-    public function setAlias($alias)
-    {
-        $this->alias = $alias;
-
-        return $this;
     }
 
     /**

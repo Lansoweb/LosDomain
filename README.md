@@ -5,7 +5,7 @@
 This module separates layouts and other configuration in files based on the domain (or subdomain) being accessed.
 
 ## Requirements
-- Zend Framework 2 [framework.zend.com](http://framework.zend.com/).
+- Zend Framework 2/3 [framework.zend.com](http://framework.zend.com/).
 
 ## Features / Todo
 
@@ -18,9 +18,6 @@ This module separates layouts and other configuration in files based on the doma
 - Integration with LosLicense (in development) to check the availibity of a domain and automatically disable it.
 
 ## Instalation
-Instalation can be done with composer ou manually
-
-### Installation with composer
 For composer documentation, please refer to [getcomposer.org](http://getcomposer.org/).
 
   1. Enter your project directory
@@ -29,7 +26,7 @@ For composer documentation, please refer to [getcomposer.org](http://getcomposer
      ```json
      {
          "require": {
-             "los/losdomain": "1.*"
+             "los/losdomain": "^2.0"
          }
      }
      ```
@@ -38,11 +35,6 @@ For composer documentation, please refer to [getcomposer.org](http://getcomposer
   5. Copy the file config/losdomain.global.php.dist to <path_to_your_project>/config/autoload/losdomain.global.php 
      and change it's content if necessary.
      
-### Installation without composer
-
-  1. Clone this module [LosDomain](http://github.com/LansoWeb/LosDomain) to your vendor directory
-  2. Enable it in your config/application.config.php like the step 4 in the previous section and configure as in the step 5.
-  
 ## Usage
 First, you need to add a line to your index.php, just after the "require 'init_autoloader.php';":
 
@@ -147,4 +139,4 @@ return [
 
 With this configuration, when the project is access through 'www.test.local', the module will load the 'test.local' files.
 
-**Warning!** If you define anything alse, it could be overwritten by it's alias.
+**Warning!** If you define anything else, it could be overwritten by it's alias.
