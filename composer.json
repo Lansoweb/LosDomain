@@ -28,7 +28,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "feature/middleware"
+            "dev-develop": "2.0-dev"
         }
     },
     "config": {
