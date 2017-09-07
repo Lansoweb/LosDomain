@@ -3,8 +3,8 @@
     "description" : "Middleware for use php configuration based on domain or subdomain",
     "require" : {
         "php": "^7.0",
-        "psr/container": "^1.0",
-        "zendframework/zend-stratigility": "^2.0"
+        "psr/container": "^1.0.0",
+        "zendframework/zend-stratigility": "^2.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.3",
