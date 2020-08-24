@@ -31,8 +31,8 @@ Because the included files cannot be cached, it's better to include the code aft
 ```php
 <?php
 
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\Glob;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\Glob;
 
 /**
  * Configuration files are loaded in a specific order. First ``global.php``, then ``*.global.php``.

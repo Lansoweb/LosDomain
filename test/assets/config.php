@@ -1,4 +1,5 @@
 <?php
+
 return [
     'los_domain' => [
         'aliases' => [
