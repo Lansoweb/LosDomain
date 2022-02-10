@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Domain Service file
- *
- * @link       http://github.com/LansoWeb/LosDomain
- * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE MIT License
- */
+declare(strict_types=1);
 
 namespace LosDomain;
 
@@ -20,7 +15,6 @@ use const GLOB_BRACE;
  * Domain Service class
  *
  * @link       http://github.com/LansoWeb/LosDomain
- * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE MIT License
  */
 final class DomainService
 {
@@ -34,6 +28,7 @@ final class DomainService
         if (! file_exists($basePath)) {
             return [];
         }
+
         $domain = new Domain();
         $path   = $domain->toString();
         if (file_exists($e = $basePath . DIRECTORY_SEPARATOR . 'config.php')) {

@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Domain file
- *
- * @link       http://github.com/LansoWeb/LosDomain
- * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE MIT License
- */
+declare(strict_types=1);
 
 namespace LosDomain;
 
@@ -15,7 +10,6 @@ use function preg_match;
  * Domain class
  *
  * @link       http://github.com/LansoWeb/LosDomain
- * @license    https://github.com/Lansoweb/LosDomain/blob/master/LICENSE MIT License
  */
 final class Domain
 {
@@ -29,6 +23,7 @@ final class Domain
         if ($domain === null) {
             $domain = $this->detectDomain();
         }
+
         $this->domain = $domain;
     }
 
