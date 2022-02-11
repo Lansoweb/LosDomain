@@ -2,12 +2,12 @@
     "name": "los/losdomain",
     "description": "Middleware for use php configuration based on domain or subdomain",
     "require": {
-        "php": "^7.2"
+        "php": "~7.4.0||~8.0.0||~8.1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.3",
-        "satooshi/php-coveralls": "^2.2",
-        "laminas/laminas-coding-standard": "^2.0"
+        "laminas/laminas-coding-standard": "^2.0",
+        "php-coveralls/php-coveralls": "^2.5",
+        "phpunit/phpunit": "^9.3"
     },
     "suggest": {
         "los/loslog": "los/loslog for logging"
@@ -46,7 +46,10 @@
         "test-coverage": "phpunit --coverage-clover clover.xml"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "type": "library",
     "license": "MIT",
