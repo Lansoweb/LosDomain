@@ -1,4 +1,10 @@
 # LosDomain
+
+> [!WARNING]
+> ## Archived
+> This domain-based configuration middleware is no longer maintained and will
+> receive no further releases. Use the configuration and multi-tenant routing
+> facilities of your current framework or deployment platform for new systems.
 [![Build Status](https://travis-ci.org/Lansoweb/LosDomain.svg?branch=master)](https://travis-ci.org/Lansoweb/LosDomain) [![Latest Stable Version](https://poser.pugx.org/los/losdomain/v/stable.svg)](https://packagist.org/packages/los/losdomain) [![Total Downloads](https://poser.pugx.org/los/losdomain/downloads.svg)](https://packagist.org/packages/los/losdomain) [![Coverage Status](https://coveralls.io/repos/Lansoweb/LosDomain/badge.svg?branch=master)](https://coveralls.io/r/Lansoweb/LosDomain?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Lansoweb/LosDomain/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Lansoweb/LosDomain/?branch=master) [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/81b4a9c0-ac7f-4047-9b12-dbe443d13517.svg?style=flat)](https://insight.sensiolabs.com/projects/81b4a9c0-ac7f-4047-9b12-dbe443d13517) [![Dependency Status](https://www.versioneye.com/user/projects/54e8470cd1ec573c99000c04/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54e8470cd1ec573c99000c04)
 
 ## Introduction
